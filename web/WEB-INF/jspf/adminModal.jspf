@@ -1,0 +1,126 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--TODO: VALIDATE CREATE FORM--%>
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" 
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cake</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form-create-cake" method="POST" enctype='multipart/form-data'>
+                <input type="hidden" name="txtCakeID" id="input-cake-id">
+                <input type="checkbox" name="toUpdateImg" id="input-img-update" style="display: none">
+                <div class="modal-body">
+                    <!--name group-->
+                    <div class="form-group">
+                        <label for="input-cake-name">name</label>
+                        <label for="input-cake-name" class="error-name-label error-msg"></label>
+                        <input type="text" class="form-control" name="txtCakeName"
+                               id="input-cake-name" placeholder="enter name" required>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+                    <!--description group-->
+                    <div class="form-group">
+                        <label for="input-cake-desc">description</label>
+                        <label for="input-cake-desc" class="error-desc-label error-msg"></label>
+                        <textarea class="form-control" 
+                                  id="input-cake-desc" 
+                                  rows="3"
+                                  name="txtCakeDescription"></textarea>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+                    <!--price group & quantity & category-->
+                    <div class="form-row">
+                        <!--cate group-->
+                        <div class="form-group col-md-6">
+                            <label for="input-cake-cate">category</label>
+                            <label for="input-cake-cate" class="error-category-label error-msg"></label>
+
+                            <select class="form-control" id="input-cake-cate" name="txtCateID">
+                                <c:forEach var="category" items="${cateList}">
+                                    <option value=${category.id}>${category.name}</option>
+                                </c:forEach>
+                            </select>
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <!--price group-->
+                        <div class="form-group col-md-3">
+                            <label for="input-cake-price">price</label>
+                            <label for="input-cake-price" class="error-price-label error-msg"></label>
+                            <input type="number" min="0" value="1" name="txtCakePrice"
+                                   class="form-control" id="input-cake-price" required>
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <!--quantity group-->
+                        <div class="form-group col-md-3">
+                            <label for="input-cake-quantity">quantity</label>
+                            <label for="input-cake-quantity" class="error-quantity-label error-msg"></label>
+                            <input type="number" min="0" value="1" name="txtCakeQuantity"
+                                   class="form-control" id="input-cake-quantity" required>
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--creation & expiration date group-->
+                    <div class="form-row">
+                        <!--creation date group-->
+                        <div class="form-group col-md-6">
+                            <label for="input-cake-dateCreate">creation date</label>
+                            <label for="input-cake-dateCreate" class="error-desc-label error-msg"></label>
+                            <input type="date" 
+                                   class="form-control" 
+                                   id="input-cake-dateCreate"
+                                   name="txtCakeCreateDate" required>
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <!--expiration date group-->
+                        <div class="form-group col-md-6">
+                            <label for="input-cake-dateExpire">expiration date</label>
+                            <label for="input-cake-dateExpire" class="error-desc-label error-msg"></label>
+                            <input type="date" 
+                                   class="form-control" 
+                                   id="input-cake-dateExpire"
+                                   name="txtCakeExpireDate" required>
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--image group-->
+                    <div class="form-group">
+                        <label for="input-cake-img">image</label>
+                        <label for="input-cake-img" class="error-img-label error-msg"></label>
+                        <input type="file" id="input-cake-img" 
+                               class="form-control-file" 
+                               name="txtCakeImg" 
+                               onchange="previewFile(this);" required>
+                        <div class="invalid-feedback">
+                        </div>
+                        <div class="img-container">
+                            <img id="previewImg" 
+                                 class="img-fluid rounded mx-auto d-block" 
+                                 src="img/placeholder.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-warning d-none" id="btn-update-cake" value="Update"/>
+                    <input type="submit" class="btn btn-primary d-none" id="btn-create-cake" value="Create"/>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

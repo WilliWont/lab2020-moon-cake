@@ -188,10 +188,6 @@
                                         <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
                                         <label class="custom-control-label" for="credit">Cash On Demand</label>
                                     </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="" disabled>
-                                        <label class="custom-control-label" for="debit">Paypal</label>
-                                    </div>
                                 </div>
 
                                 <hr class="mb-4">

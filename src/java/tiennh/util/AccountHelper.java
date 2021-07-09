@@ -28,7 +28,9 @@ public class AccountHelper implements Serializable {
     public static final int MEMBER_ROLE = 1;
     public static final int GUEST_ROLE = 2;
     public static final int THIRD_PARTY_ROLE = 3;
-
+    
+    public static final int NAME_MIN_LEN = 0;
+    public static final int NAME_MAX_LEN = 64;
 
     public static final int DEFAULT_ROLE = 1;
 
@@ -39,5 +41,10 @@ public class AccountHelper implements Serializable {
         } else {
             return null;
         }
+    }
+    
+    public static boolean validateEmail(String email){
+        return true;
+//        return EmailValidator.getInstance().isValid(email);
     }
 }

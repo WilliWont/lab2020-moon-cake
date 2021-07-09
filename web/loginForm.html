@@ -131,6 +131,9 @@ and open the template in the editor.
                 border-color:rgb(91, 192, 222);
                 background-color:white;
             }
+            #registerLink{
+                padding-top:2vh;
+            }
         </style>
     </head>
     <body>
@@ -151,8 +154,10 @@ and open the template in the editor.
                         <input type="submit" value="Login" class="form-btn"/>
                         <input type="reset" value="Reset" class="form-btn"/>
                     </div>
-                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/l2/googleSignIn&response_type=code&client_id=489552942628-8s69f9dqohj0454b7qefljrqeat87lpt.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>  
                 </form>
+                <div class="form-btn-container" id="registerLink">
+                    <a href="registerForm">Register Account</a>
+                </div>
             </div>
         </div>
     </body>

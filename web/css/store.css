@@ -38,13 +38,14 @@
 .store-link{
     transition: .2s ease;
     font-weight:900;
-    color:rgb(240, 173, 78);
+    color:rgb(132, 185, 190);
     font-size:3.25rem;
     text-decoration: none !important;
 }
 .store-link:hover{
     transition: .2s ease;
-    color:rgb(240, 163, 68);
+    color:rgb(132, 185, 190);
+
 }
 .product-item{
     transition: .1s ease;

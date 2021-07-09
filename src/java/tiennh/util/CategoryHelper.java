@@ -18,14 +18,14 @@ import tiennh.category.CategoryObject;
 public class CategoryHelper implements Serializable {
 
     // TODO: make initialization from DB if have time
-    private Map<Integer, String> cateList;
+    private final Map<Integer, String> cateList;
 
     public CategoryHelper() {
         cateList = new HashMap();
-        cateList.put(0, "cake0");
-        cateList.put(1, "cake1");
-        cateList.put(2, "cake2");
-        cateList.put(3, "cake3");
+        cateList.put(0, "Bread");
+        cateList.put(1, "Sweet");
+        cateList.put(2, "Candy");
+        cateList.put(3, "Cake");
     }
 
     public String getCategoryName(int id) {
@@ -37,15 +37,20 @@ public class CategoryHelper implements Serializable {
         if (productList != null) {
             Integer previousCate = null;
             CategoryObject currentCateObj = null;
-
             for (CakeTableDTO cake : productList) {
                 Integer currentCate = cake.getCategoryID();
                 System.out.println("cake:" + cake.getId() + ", current: " + currentCate + ", prev: " + previousCate);
                 System.out.println("-----------");
                 if (currentCate != null) {
+                    
                     boolean hasAdded = false;
+                    
                     if (!currentCate.equals(previousCate)) {
+                        System.out.println("not Equal");
+                        
                         if (currentCateObj != null) {
+                            System.out.println("new Category");
+                            
                             cakeList.add(currentCateObj);
                         }
 
@@ -62,6 +67,8 @@ public class CategoryHelper implements Serializable {
                     previousCate = currentCate;
                 }
             }
+            
+            cakeList.add(currentCateObj);   
         }
 
         Collections.sort(cakeList, new Comparator<CategoryObject>() {
@@ -70,7 +77,7 @@ public class CategoryHelper implements Serializable {
                 return u2.getCategoryCakeAmount() - u1.getCategoryCakeAmount();
             }
         });
-
+        
         return cakeList;
     }
 

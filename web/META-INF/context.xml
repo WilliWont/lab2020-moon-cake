@@ -7,7 +7,7 @@
         type = "javax.sql.DataSource"
         auth = "Container"
         driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-        url = "jdbc:sqlserver://localhost:1433;databaseName=LAB231_lab2"
+        url = "jdbc:sqlserver://localhost:1433;databaseName=ISC301_Assgn"
         username = "sa"
         password = "123456789Aa"
         

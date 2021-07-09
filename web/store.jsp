@@ -117,7 +117,7 @@
                     <div id="welcome-container">
                         <div id="welcome-msg-container">
                             <h1 id="welcome-msg"> 
-                                <div><a href="store" class="store-link">Yellow Moon Shop</a></div>
+                                <div><a href="store" class="store-link">The Cake Store</a></div>
                                 <c:if test="${not empty curUser}">
                                     Welcome <span id="welcome-name">${sessionScope.SES_USER.nameF} 
                                     </span> 

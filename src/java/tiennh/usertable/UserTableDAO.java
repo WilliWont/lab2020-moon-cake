@@ -16,6 +16,84 @@ import tiennh.util.DBHelper;
 
 public class UserTableDAO implements Serializable {
 
+      public boolean registerAccount(UserTableDTO account) 
+            throws NamingException, SQLException{
+        
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement preStm = null;
+        ResultSet rs = null;
+        
+        try{
+            String query = "INSERT INTO userTbl "
+                    + "VALUES(?, ?, ?, ?, ?, ?)";
+            
+            conn = DBHelper.getConnection();
+            
+            preStm = conn.prepareStatement(query);
+            
+            int stmIndex = 1;
+            
+            preStm.setString(stmIndex++, account.getEmail());
+            preStm.setString(stmIndex++, account.getPassword());
+            preStm.setString(stmIndex++, account.getNameF());
+            preStm.setString(stmIndex++, account.getNameL());
+            preStm.setInt(stmIndex++, AccountHelper.DEFAULT_ROLE);
+            preStm.setInt(stmIndex++, DBHelper.DEFAULT_STATUS);
+            
+            int rowsAffected = preStm.executeUpdate();
+            
+            if(rowsAffected > 0)
+                result = true;
+        }
+        finally{
+            if (rs != null)
+                rs.close();
+            if (preStm != null)
+                preStm.close();
+            if (conn != null)
+                conn.close();
+        }
+        
+        return result;
+    }
+    
+    public boolean checkDupeAccount(String accountName)
+            throws NamingException, SQLException{
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement preStm = null;
+        ResultSet rs = null;
+        
+        try{
+            String query = "SELECT username "
+                    + "FROM userTbl "
+                    + "WHERE username = ? ";
+            
+            conn = DBHelper.getConnection();
+            
+            preStm = conn.prepareStatement(query);
+            
+            preStm.setString(1, accountName);
+            
+            rs = preStm.executeQuery();
+            
+            if(rs.next())
+                result = true;
+        }
+        finally{
+            if (rs != null)
+                rs.close();
+            if (preStm != null)
+                preStm.close();
+            if (conn != null)
+                conn.close();
+        }
+        
+        return result;
+    }
+    
+    
     public UserTableDTO checkLogin(String username, String password)
             throws SQLException, ClassNotFoundException, NamingException {
         System.out.println("-atUserTableDAO-checkLogin");
@@ -71,36 +149,4 @@ public class UserTableDAO implements Serializable {
         return result;
     }
 
-    public void insert3rdParty(String username)
-            throws NamingException, SQLException {
-        Connection conn = null;
-        PreparedStatement preStm = null;
-        ResultSet rs = null;
-        
-        try {
-            String query = "INSERT INTO userTbl VALUES(?,null,null,null,?,?)";
-            
-            conn = DBHelper.getConnection();
-            
-            preStm = conn.prepareStatement(query);
-            
-            preStm.setString(1, username);
-            preStm.setInt(2, AccountHelper.THIRD_PARTY_ROLE);
-            preStm.setInt(3, DBHelper.ACTIVE_STATUS);
-            
-            preStm.executeUpdate();
-
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (preStm != null) {
-                preStm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        
-    }
 }

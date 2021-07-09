@@ -160,6 +160,8 @@ public class CanAuthenFilter implements Filter {
             chain.doFilter(request, rep);
         } catch (Throwable t) {
             log(this.getClass().getSimpleName() + '-' + t.getMessage());
+            chain.doFilter(request, rep);
+
         } finally {
             System.out.println("------------------------");
         }

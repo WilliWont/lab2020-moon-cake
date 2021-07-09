@@ -14,8 +14,17 @@ public class UserTableDTO implements Serializable {
     private int role;
     private String nameF;
     private String nameL;
+    private String email;
 
     public UserTableDTO() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
